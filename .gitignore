@@ -1,0 +1,12 @@
+# Ignore bundler config.
+/vendor/bundle
+
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+
+# Ignore environment
+.DS_Store
+.env
+.env.*
+.byebug_history
