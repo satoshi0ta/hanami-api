@@ -2,7 +2,6 @@ GEM
   remote: https://rubygems.org/
   specs:
     ast (2.4.0)
-    bcrypt (3.1.13)
     better_errors (2.6.0)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
@@ -180,7 +179,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bcrypt
   byebug
   dotenv
   hanami (~> 1.3)
