@@ -1,25 +1,33 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem 'rake'
-gem 'hanami',       '~> 1.3'
+ruby '2.6.6'
+
+gem 'hanami', '~> 1.3'
 gem 'hanami-model', '~> 1.3'
+gem 'rake'
 
+gem 'bcrypt'
 gem 'mysql2'
 
 group :development do
   # Code reloading
   # See: https://guides.hanamirb.org/projects/code-reloading
-  gem 'shotgun', platforms: :ruby
   gem 'hanami-webconsole'
+  gem 'shotgun', platforms: :ruby
 end
 
 group :test, :development do
-  gem 'dotenv', '~> 2.4'
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'dotenv'
+  gem 'rubocop'
+  gem 'rubocop-rspec'
 end
 
 group :test do
   gem 'rspec'
-  gem 'capybara'
 end
 
 group :production do
