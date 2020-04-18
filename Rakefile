@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rake'
 require 'hanami/rake_tasks'
 
@@ -6,4 +8,5 @@ begin
   RSpec::Core::RakeTask.new(:spec)
   task default: :spec
 rescue LoadError
+  # failure handling goes here
 end
