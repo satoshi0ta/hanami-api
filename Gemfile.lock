@@ -2,7 +2,6 @@ GEM
   remote: https://rubygems.org/
   specs:
     ast (2.4.0)
-    bcrypt (3.1.13)
     better_errors (2.6.0)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
@@ -120,7 +119,6 @@ GEM
       ast (~> 2.4.0)
     rack (2.2.2)
     rainbow (3.0.0)
-    rake (13.0.1)
     rexml (3.2.4)
     rom (3.3.3)
       concurrent-ruby (~> 1.0)
@@ -181,14 +179,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bcrypt
   byebug
   dotenv
   hanami (~> 1.3)
   hanami-model (~> 1.3)
   hanami-webconsole
   mysql2
-  rake
   rspec
   rubocop
   rubocop-rspec
