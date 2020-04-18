@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 # Configure your routes here
 # See: https://guides.hanamirb.org/routing/overview
 #
