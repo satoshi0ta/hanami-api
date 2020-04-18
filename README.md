@@ -7,7 +7,7 @@ Welcome to your new Hanami project!
 How to run tests:
 
 ```
-% bundle exec rake
+% bundle exec rspec
 ```
 
 How to run the development console:
