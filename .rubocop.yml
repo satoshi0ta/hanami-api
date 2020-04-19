@@ -5,6 +5,10 @@ require: rubocop-rspec
 AllCops:
   TargetRubyVersion: 2.6
 
+Metrics/BlockLength:
+  Exclude:
+    - 'apps/api/application.rb'
+
 ClassAndModuleChildren:
   Enabled: false
 
