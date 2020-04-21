@@ -6,21 +6,13 @@ class User::Create
   include Hanami::Interactor
   expose :user
 
-  def initialize(repository: UserRepository.new)
+  def initialize(repository: UserRepository.new, password_service: Password)
     @repository = repository
+    @password_service = password_service
   end
 
   def call(user_attributes)
-    encrypted_user_attributes = encrypt(user_attributes)
-    @repository.create(encrypted_user_attributes)
-  end
-
-  private
-
-  def encrypt(attributes)
-    password_digest = BCrypt::Password.create(attributes[:password])
-    attributes = attributes.merge(password_digest: password_digest)
-    attributes.delete(:password)
-    attributes
+    user_with_encrypted_password = @password_service.encrypt(user_attributes)
+    @repository.create(user_with_encrypted_password)
   end
 end
