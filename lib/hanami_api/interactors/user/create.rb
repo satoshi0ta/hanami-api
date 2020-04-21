@@ -15,12 +15,12 @@ class User::Create
     @repository.create(user_with_encrypted_password)
   end
 
-  private	
+  private
 
-  def encrypt(attributes)	
-    password_digest = BCrypt::Password.create(attributes[:password])	
-    attributes = attributes.merge(password_digest: password_digest)	
-    attributes.delete(:password)	
-    attributes	
+  def encrypt(attributes)
+    password_digest = BCrypt::Password.create(attributes[:password])
+    attributes = attributes.merge(password_digest: password_digest)
+    attributes.delete(:password)
+    attributes
   end
 end
