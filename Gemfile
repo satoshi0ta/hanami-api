@@ -9,7 +9,6 @@ gem 'bcrypt'
 gem 'hanami', '~> 1.3'
 gem 'hanami-model', '~> 1.3'
 gem 'mysql2'
-gem 'transproc'
 
 group :development do
   # Code reloading

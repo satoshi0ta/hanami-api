@@ -191,7 +191,6 @@ DEPENDENCIES
   rubocop
   rubocop-rspec
   shotgun
-  transproc
 
 RUBY VERSION
    ruby 2.6.6p146
