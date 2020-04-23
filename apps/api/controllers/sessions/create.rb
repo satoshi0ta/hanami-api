@@ -9,8 +9,9 @@ module Api::Controllers::Sessions
       required(:password).filled(:str?).confirmation
     end
 
-    def initialize(user_repository: UserRepository.new)
+    def initialize(user_repository: UserRepository.new, password_service: Password.new)
       @user_repository = user_repository
+      @password_service = password_service
     end
 
     def call(params)
@@ -18,7 +19,7 @@ module Api::Controllers::Sessions
       password = params.get(:password)
 
       user = @user_repository.by_email(email)
-      self.body = if user && Password.verify(user.password_digest, password)
+      self.body = if user && @password_service.verify(user.password_digest, password)
                     'issue jwt'
                   else
                     'Authentication failure'
