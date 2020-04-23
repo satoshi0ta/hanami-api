@@ -14,7 +14,7 @@ class User::Authenticate
   def call(params)
     user = @user_repository.by_email(params[:email])
     if user && @password_service.verify(user.password_digest, params[:password])
-      @token = 'khskfghakjhdfgka'
+      @token = JwtIssuer.generate(user)
     else
       error!('Authentication failure')
     end
