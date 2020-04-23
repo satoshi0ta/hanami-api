@@ -25,9 +25,7 @@ How to run the development server:
 How to prepare (create and migrate) DB for `development` and `test` environments:
 
 ```
-% bundle exec hanami db prepare
-
-% HANAMI_ENV=test bundle exec hanami db prepare
+% bundle exec hanami db prepare && HANAMI_ENV=test bundle exec hanami db prepare
 ```
 
 How to generate Actions

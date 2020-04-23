@@ -9,6 +9,9 @@ Metrics/BlockLength:
   Exclude:
     - 'apps/api/application.rb'
 
+RSpec/EmptyExampleGroup:
+  Enabled: false
+
 ClassAndModuleChildren:
   Enabled: false
 

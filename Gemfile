@@ -5,8 +5,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.6'
 
+gem 'bcrypt'
 gem 'hanami', '~> 1.3'
 gem 'hanami-model', '~> 1.3'
+gem 'jwt'
 gem 'mysql2'
 
 group :development do
