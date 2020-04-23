@@ -18,17 +18,11 @@ module Api::Controllers::Sessions
       password = params.get(:password)
 
       user = @user_repository.by_email(email)
-      if user && check_password(user.password_digest, password)
-        self.body = 'issue jwt'
-      else
-        self.body = 'Authentication failure'
-      end
-    end
-
-    private
-
-    def check_password(password_digest, unencrypted_password)
-      BCrypt::Password.new(password_digest).is_password?(unencrypted_password)
+      self.body = if user && Password.verify(user.password_digest, password)
+                    'issue jwt'
+                  else
+                    'Authentication failure'
+                  end
     end
   end
 end
