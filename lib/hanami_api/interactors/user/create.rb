@@ -12,7 +12,12 @@ class User::Create
   end
 
   def call(user_attributes)
+    if @user_repository.by_email(user_attributes[:email]) && true
+      error!('The email is already taken')
+    end
+
     user_with_encrypted_password = @password_service.encrypt(user_attributes)
-    @user_repository.create(user_with_encrypted_password)
+    @user = @user_repository.create(user_with_encrypted_password)
+    @user
   end
 end
