@@ -3,27 +3,26 @@
 module Api::Controllers::Sessions
   class Create
     include Api::Action
+    accept :json
 
     params do
       required(:email).filled(:str?, format?: /@/)
       required(:password).filled(:str?).confirmation
     end
 
-    def initialize(user_repository: UserRepository.new, password_service: Password.new)
-      @user_repository = user_repository
-      @password_service = password_service
+    def initialize(interactor: User::Authenticate.new)
+      @interactor = interactor
     end
 
     def call(params)
-      email = params.get(:email)
-      password = params.get(:password)
-
-      user = @user_repository.by_email(email)
-      self.body = if user && @password_service.verify(user.password_digest, password)
-                    'issue jwt'
-                  else
-                    'Authentication failure'
-                  end
+      result = @interactor.call(params.to_h)
+      if result.successful?
+        self.body = result.token
+        self.status = 201
+      else
+        self.body = result.errors
+        self.status = 422
+      end
     end
   end
 end
