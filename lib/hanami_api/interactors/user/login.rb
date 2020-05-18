@@ -2,7 +2,7 @@
 
 require 'hanami/interactor'
 
-class User::Authenticate
+class User::Login
   include Hanami::Interactor
   expose :token
 
@@ -14,7 +14,7 @@ class User::Authenticate
   def call(params)
     user = @user_repository.by_email(params[:email])
     if user && @password_service.verify(user.password_digest, params[:password])
-      @token = JwtIssuer.generate(user)
+      @token = JwtIssuer.encode(user)
     else
       error!('Authentication failure')
     end

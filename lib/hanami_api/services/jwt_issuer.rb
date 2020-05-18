@@ -2,19 +2,13 @@
 
 class JwtIssuer
   class << self
-    def generate(user)
+    def encode(user)
       payload = {
-        user_id: user.id
+        uid: user.id,
+        exp: (Time.now + 60 * 60 * 24).to_i,
+        iat: Time.now.to_i
       }
-      encode(payload)
-    end
-
-    def encode(payload)
       JWT.encode(payload, nil, 'none')
-    end
-
-    def decode(token)
-      JWT.decode(token, nil, false)
     end
   end
 end
