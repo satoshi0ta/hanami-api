@@ -3,6 +3,7 @@
 module Api::Controllers::Users
   class Create
     include Api::Action
+    include Api::Controllers::Authentication::Skip
     accept :json
 
     params do
@@ -15,13 +16,15 @@ module Api::Controllers::Users
     end
 
     def call(params)
+      halt 400 unless params.valid?
+
       result = @interactor.call(params.to_h)
       if result.successful?
         self.body = JSON.generate(result.user.to_h)
         self.status = 201
       else
         self.body = result.errors
-        self.status = 422
+        self.status = 409
       end
     end
   end

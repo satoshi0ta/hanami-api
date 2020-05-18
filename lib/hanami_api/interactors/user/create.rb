@@ -11,11 +11,10 @@ class User::Create
     @password_service = password_service
   end
 
-  def call(user_attributes)
-    error!('Email address is already taken') if @user_repository.by_email(user_attributes[:email])
+  def call(params)
+    error!('Email address is already in use') if @user_repository.by_email(params[:email])
 
-    user_with_encrypted_password = @password_service.encrypt(user_attributes)
+    user_with_encrypted_password = @password_service.encrypt(params)
     @user = @user_repository.create(user_with_encrypted_password)
-    @user
   end
 end
